@@ -54,17 +54,32 @@
                 {
                     Console.Clear();
                     Console.WriteLine("Enter the following student details:");
+
                     //to add student name into array names ....
                     Console.WriteLine("Student Name:");
                     names[StudentCounter] = Console.ReadLine();
+
                     //to add student age into array ages ....
                     Console.WriteLine("Student Age:");
                     Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                    while(Ages[StudentCounter] > 21)
+                    {
+                        Console.WriteLine("Sory you can not add student age above 21 years old !\n " +
+                                          "Please enter anther age:");
+                        Ages[StudentCounter] = int.Parse(Console.ReadLine());
+
+                    }
                     //to add student mark into array marks ....
                     Console.WriteLine("Student Mark:");
                     marks[StudentCounter] = double.Parse(Console.ReadLine());
+                    while(marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
+                    {
+                        Console.WriteLine("Sory student mark should be (0-100) !\n " +
+                                          "Please enter anther mark:");
+                        marks[StudentCounter] = double.Parse(Console.ReadLine());
+                    }
+
                     //to add date of taday into array dates ....
-                    Console.WriteLine("Student Mark:");
                     dates[StudentCounter] = DateTime.Now;
 
                     // so the system now that there are one more student added ......
