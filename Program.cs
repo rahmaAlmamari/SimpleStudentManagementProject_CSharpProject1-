@@ -20,7 +20,25 @@
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            while (true) // we use while loop to repeat the process and we set true so it will not stop ... 
+            {
+                Console.Clear();
+                Console.WriteLine("System Menu \n");
+                Console.WriteLine("Select option: ");
+                Console.WriteLine("1.  Simple Calculator");
+                Console.WriteLine("0.  Exit");
+
+                Console.Write("Enter your option: ");
+                int choice = int.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:  break;
+                    case 0: Console.WriteLine("Have a nice day ..."); return;
+                    default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
+                }
+                Console.ReadLine();// we add this line just to stop the program from clear 'Console.Clear();' the screen before the user see the result ...
+
+            }
         }
     }
 }
