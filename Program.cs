@@ -29,7 +29,8 @@
                 Console.WriteLine("Select option: ");
                 Console.WriteLine("1. Adding a New Student");
                 Console.WriteLine("2. Viewing All Students");
-                Console.WriteLine("3. Searching for a Student by Name ");
+                Console.WriteLine("3. Searching for a Student by Name");
+                Console.WriteLine("4. Calculating the Class Average");
                 Console.WriteLine("0.  Exit");
 
                 Console.Write("\nEnter your option: ");
@@ -39,6 +40,7 @@
                     case 1: AddingNewStudent(); break;
                     case 2: ViewingAllStudents(); break;
                     case 3: SearchingForStudentByName(); break;
+                    case 4: CalculatingClassAverage(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -152,6 +154,18 @@
 
             } while (choice == 'y' || choice == 'Y');
 
+        }
+        //4. Calculating the Class Average ....
+        static void CalculatingClassAverage()
+        {
+            double sum = 0;
+            double Average;
+            for (int i=0; i< StudentCounter; i++)
+            {
+                sum = sum + marks[i];
+            }
+            Average = sum / StudentCounter;
+            Console.WriteLine($"The student average is: {Average}");
         }
     }
 }
