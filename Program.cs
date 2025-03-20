@@ -12,10 +12,10 @@
          *
          */
         // declare the array and variable needed ....
-        static double[] marks = new double[10];
-        static int[] Ages = new int[10];
-        static string[] names = new string[10];
-        static DateTime[] dates = new DateTime[10];
+        static double[] marks = new double[3];
+        static int[] Ages = new int[3];
+        static string[] names = new string[3];
+        static DateTime[] dates = new DateTime[3];
         static int StudentCounter = 0;
 
 
@@ -28,6 +28,7 @@
                 Console.WriteLine("System Menu \n");
                 Console.WriteLine("Select option: ");
                 Console.WriteLine("1. Adding a New Student");
+                Console.WriteLine("2. Viewing All Students");
                 Console.WriteLine("0.  Exit");
 
                 Console.Write("\nEnter your option: ");
@@ -35,6 +36,7 @@
                 switch (choice)
                 {
                     case 1: AddingNewStudent(); break;
+                    case 2: ViewingAllStudents(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -97,6 +99,23 @@
 
             } while (choice == 'y' || choice == 'Y');
 
+
+        }
+        //2. Viewing All Students .........
+        static void ViewingAllStudents()
+        {
+            Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
+            for(int i=0; i< names.Length; i++)
+            {
+                if (names[i] != "" && Ages[i] != 0 && marks[i] != 0)
+                {
+                    Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+                }
+                else
+                {
+                    break;
+                }
+            }
 
         }
     }
