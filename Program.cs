@@ -16,6 +16,7 @@
         static int[] Ages = new int[3];
         static string[] names = new string[3];
         static DateTime[] dates = new DateTime[3];
+        static bool[] isPrinted = new bool[3];
         static int StudentCounter = 0;
 
 
@@ -31,7 +32,7 @@
                 Console.WriteLine("2. Viewing All Students");
                 Console.WriteLine("3. Searching for a Student by Name");
                 Console.WriteLine("4. Calculating the Class Average");
-                Console.WriteLine("5. Calculating the Class Average");
+                Console.WriteLine("5. Sorting Students by Marks (Descending Order)");
                 Console.WriteLine("0.  Exit");
 
                 Console.Write("\nEnter your option: ");
@@ -42,7 +43,7 @@
                     case 2: ViewingAllStudents(); break;
                     case 3: SearchingForStudentByName(); break;
                     case 4: CalculatingClassAverage(); break;
-                    case 5: CalculatingClassAverage(); break;
+                    case 5: SortingStudentsByMarksDescending(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -170,6 +171,28 @@
             double rounded_average = Math.Round(Average, 2);
             Console.WriteLine($"The student average is: {rounded_average}");
         }
-        //5. 
+        //5. Sorting Students by Marks (Descending Order) ...
+        static void SortingStudentsByMarksDescending()
+        {
+            //to set all student as not printed ........
+            for(int i=0; i< StudentCounter; i++)
+            {
+                isPrinted[i] = false;
+            }
+            for(int i=0; i< StudentCounter; i++)
+            {
+                double lar_mark = 0;
+                int index = 0;
+                for (int j=0; j< StudentCounter; j++)
+                {
+                    if (marks[j] > lar_mark)
+                    {
+                        lar_mark = marks[j];
+                        index = Array.IndexOf(marks, marks[j]);
+                    }
+                }
+
+            }
+        }
     }
 }
