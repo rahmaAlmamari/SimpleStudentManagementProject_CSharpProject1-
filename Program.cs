@@ -31,6 +31,7 @@
                 Console.WriteLine("2. Viewing All Students");
                 Console.WriteLine("3. Searching for a Student by Name");
                 Console.WriteLine("4. Calculating the Class Average");
+                Console.WriteLine("5. Calculating the Class Average");
                 Console.WriteLine("0.  Exit");
 
                 Console.Write("\nEnter your option: ");
@@ -41,6 +42,7 @@
                     case 2: ViewingAllStudents(); break;
                     case 3: SearchingForStudentByName(); break;
                     case 4: CalculatingClassAverage(); break;
+                    case 5: CalculatingClassAverage(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -165,7 +167,9 @@
                 sum = sum + marks[i];
             }
             Average = sum / StudentCounter;
-            Console.WriteLine($"The student average is: {Average}");
+            double rounded_average = Math.Round(Average, 2);
+            Console.WriteLine($"The student average is: {rounded_average}");
         }
+        //5. 
     }
 }
