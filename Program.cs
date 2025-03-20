@@ -29,6 +29,7 @@
                 Console.WriteLine("Select option: ");
                 Console.WriteLine("1. Adding a New Student");
                 Console.WriteLine("2. Viewing All Students");
+                Console.WriteLine("3. Searching for a Student by Name ");
                 Console.WriteLine("0.  Exit");
 
                 Console.Write("\nEnter your option: ");
@@ -37,6 +38,7 @@
                 {
                     case 1: AddingNewStudent(); break;
                     case 2: ViewingAllStudents(); break;
+                    case 3: SearchingForStudentByName(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -107,15 +109,48 @@
             Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
             for(int i=0; i< names.Length; i++)
             {
-                if (names[i] != "" && Ages[i] != 0 && marks[i] != 0)
+                if (names[i] != "" && Ages[i] != 0 && marks[i] != 0)//to check if there is a record or not to print ..... 
                 {
                     Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
                 }
                 else
                 {
-                    break;
+                    break;//to stop the printing process when the record is finish even if the array size not finish yet ....   
                 }
             }
+
+        }
+        //3. Searching for a Student by Name  ......
+        static void SearchingForStudentByName()
+        {
+            char choice;
+            do
+            {
+                string search_name;//to store name to search for ......
+                //string array_name;
+                int flag = 0;// to now if there are no recored match the search_name and display not found
+                Console.WriteLine("Enter student name:");
+                search_name = Console.ReadLine().ToLower();
+
+                for (int i = 0; i < StudentCounter; i++)// we use StudentCounter to loop based on the number of student exit ....
+                {
+                    // array_name = names[i].ToLower();
+                    if (names[i].ToLower() == search_name)
+                    {
+                        Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
+                        Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+                        flag = 1;
+                    }
+                }
+                if (flag == 0)
+                {
+                    Console.WriteLine("Not found");
+                }
+
+                Console.WriteLine("Do you want to add anther student? y / n");
+                choice = Console.ReadKey().KeyChar;
+
+            } while (choice == 'y' || choice == 'Y');
 
         }
     }
