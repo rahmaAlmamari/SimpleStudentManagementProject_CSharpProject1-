@@ -36,9 +36,10 @@ namespace Project1
                 Console.WriteLine("3. Searching for a Student by Name");
                 Console.WriteLine("4. Calculating the Class Average");
                 Console.WriteLine("5. Sorting Students by Marks (Descending Order)");
+                Console.WriteLine("6. Deleting a Student");
                 Console.WriteLine("0.  Exit");
 
-                Console.Write("\nEnter your option: ");
+                Console.Write("\nEnter your option: \n");
                 int choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
@@ -47,6 +48,7 @@ namespace Project1
                     case 3: SearchingForStudentByName(); break;
                     case 4: CalculatingClassAverage(); break;
                     case 5: SortingStudentsByMarksDescending(); break;
+                    case 6: DeletingStudent(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -105,7 +107,7 @@ namespace Project1
                     Console.WriteLine();
                     choice = 'n';
                 }
-     
+                Console.WriteLine();//to give time befor going to the next step .... 
 
             } while (choice == 'y' || choice == 'Y');
 
@@ -115,16 +117,20 @@ namespace Project1
         static void ViewingAllStudents()
         {
             Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-            for(int i=0; i< names.Length; i++)
+            //for(int i=0; i< names.Length; i++)
+            //{
+            //    if (names[i] != "" && Ages[i] != 0 && marks[i] != 0)//to check if there is a record or not to print ..... 
+            //    {
+            //        Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+            //    }
+            //    else
+            //    {
+            //        break;//to stop the printing process when the record is finish even if the array size not finish yet ....   
+            //    }
+            //}
+            for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
             {
-                if (names[i] != "" && Ages[i] != 0 && marks[i] != 0)//to check if there is a record or not to print ..... 
-                {
-                    Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
-                }
-                else
-                {
-                    break;//to stop the printing process when the record is finish even if the array size not finish yet ....   
-                }
+                Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
             }
 
         }
@@ -155,7 +161,7 @@ namespace Project1
                     Console.WriteLine("Not found");
                 }
 
-                Console.WriteLine("Do you want to add anther student? y / n");
+                Console.WriteLine("Do you want to search for anther student? y / n");
                 choice = Console.ReadKey().KeyChar;
 
             } while (choice == 'y' || choice == 'Y');
@@ -205,6 +211,49 @@ namespace Project1
                 Console.WriteLine($"{names[sorted_index[i]]} | {Ages[sorted_index[i]]} |" +
                                   $" {marks[sorted_index[i]]} | {dates[sorted_index[i]]}");
             }
+        }
+        //6. Deleting a Student .....
+        static void DeletingStudent()
+        {
+            //to store name to delete ......
+            string delete_name;
+            int delete_index = 0;
+            // to now if there are no recored match the delete_name and display not found ...
+            int flag = 0;
+            Console.WriteLine("Enter student name you want to delete:");
+            delete_name = Console.ReadLine().ToLower();
+            // loop to now if delete_name is exit in the recored or not ....
+            for (int i = 0; i < StudentCounter; i++)
+            {
+                if (names[i].ToLower() == delete_name)
+                {
+                    delete_index = Array.IndexOf(names, names[i]);
+                    flag = 1;
+                }
+            }
+            if (flag == 0)
+            {
+                Console.WriteLine("Not found");
+            }
+            else
+            {
+                Console.WriteLine($"Student {names[delete_index]} is deleted successfully \n");
+                StudentCounter--;
+                // loop to remove delete_name from the recored and shift all elements to the left after delete_name ... 
+                for (int i = delete_index; i < StudentCounter; i++)
+                {
+                    names[i] = names[i + 1];
+                    Ages[i] = Ages[i + 1];
+                    marks[i] = marks[i + 1];
+                    dates[i] = dates[i + 1];
+                }
+                Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
+                for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
+                {
+                    Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+                }
+            }
+
         }
     }
 }
