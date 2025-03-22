@@ -1,4 +1,6 @@
-﻿namespace Project1
+﻿using System;
+
+namespace Project1
 {
     internal class Program
     {
@@ -17,6 +19,7 @@
         static string[] names = new string[3];
         static DateTime[] dates = new DateTime[3];
         static bool[] isPrinted = new bool[3];
+        static int[] sorted_index = new int[3];
         static int StudentCounter = 0;
 
 
@@ -179,19 +182,28 @@
             {
                 isPrinted[i] = false;
             }
-            for(int i=0; i< StudentCounter; i++)
+            for(int i=0; i< StudentCounter; i++)//to loop in all student .....
             {
                 double lar_mark = 0;
                 int index = 0;
                 for (int j=0; j< StudentCounter; j++)
                 {
-                    if (marks[j] > lar_mark)
+                    if (marks[j] > lar_mark && isPrinted[j] == false)
                     {
                         lar_mark = marks[j];
                         index = Array.IndexOf(marks, marks[j]);
                     }
                 }
+                sorted_index[i] = index;
+                isPrinted[index] = true;
 
+            }
+            Console.WriteLine("Student Information (Descending Order): " +
+                  "\n\nName | Age | Mark | Enrollment date");
+            for(int i=0; i<StudentCounter; i++)
+            {
+                Console.WriteLine($"{names[sorted_index[i]]} | {Ages[sorted_index[i]]} |" +
+                                  $" {marks[sorted_index[i]]} | {dates[sorted_index[i]]}");
             }
         }
     }
