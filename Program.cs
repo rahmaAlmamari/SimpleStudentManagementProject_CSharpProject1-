@@ -77,9 +77,10 @@ namespace Project1
                 Console.WriteLine("2. Viewing All Students");
                 Console.WriteLine("3. Searching for a Student by Name");
                 Console.WriteLine("4. Calculating the Class Average");
-                Console.WriteLine("5. Sorting Students by Marks (Descending Order)");
-                Console.WriteLine("6. Deleting a Student");
-                Console.WriteLine("0.  Exit");
+                Console.WriteLine("5. Find the top-performing student");
+                Console.WriteLine("6. Sorting Students by Marks (Descending Order)");
+                Console.WriteLine("7. Deleting a Student");
+                Console.WriteLine("0. Exit");
 
                 Console.Write("\nEnter your option: \n");
                 int choice = int.Parse(Console.ReadLine());
@@ -89,8 +90,9 @@ namespace Project1
                     case 2: ViewingAllStudents(); break;
                     case 3: SearchingForStudentByName(); break;
                     case 4: CalculatingClassAverage(); break;
-                    case 5: SortingStudentsByMarksDescending(); break;
-                    case 6: DeletingStudent(); break;
+                    case 5: FindTopPerformingStudent(); break;
+                    case 6: SortingStudentsByMarksDescending(); break;
+                    case 7: DeletingStudent(); break;
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
@@ -149,7 +151,6 @@ namespace Project1
                     Console.WriteLine();
                     choice = 'n';
                 }
-                Console.WriteLine();//to give time befor going to the next step .... 
 
             } while (choice == 'y' || choice == 'Y');
 
@@ -222,7 +223,22 @@ namespace Project1
             double rounded_average = Math.Round(Average, 2);
             Console.WriteLine($"The student average is: {rounded_average}");
         }
-        //5. Sorting Students by Marks (Descending Order) ...
+        //5. Find the top-performing student ....
+        static void FindTopPerformingStudent()
+        {
+            double lar_mark = 0;
+            int index = 0;
+            for(int i=0; i<StudentCounter; i++)
+            {
+                if (marks[i] > lar_mark)
+                {
+                    lar_mark = marks[i];
+                    index = Array.IndexOf(marks, marks[i]);
+                }
+            }
+            Console.WriteLine($"The top pPerforming Student is: {names[index]} with mark: {lar_mark}");
+        }
+        //6. Sorting Students by Marks (Descending Order) ...
         static void SortingStudentsByMarksDescending()
         {
             //to set all student as not printed ........
@@ -254,7 +270,7 @@ namespace Project1
                                   $" {marks[sorted_index[i]]} | {dates[sorted_index[i]]}");
             }
         }
-        //6. Deleting a Student .....
+        //7. Deleting a Student .....
         static void DeletingStudent()
         {
             char choice;
