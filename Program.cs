@@ -257,44 +257,53 @@ namespace Project1
         //6. Deleting a Student .....
         static void DeletingStudent()
         {
-            //to store name to delete ......
-            string delete_name;
-            int delete_index = 0;
-            // to now if there are no recored match the delete_name and display not found ...
-            int flag = 0;
-            Console.WriteLine("Enter student name you want to delete:");
-            delete_name = Console.ReadLine().ToLower();
-            // loop to now if delete_name is exit in the recored or not ....
-            for (int i = 0; i < StudentCounter; i++)
+            char choice;
+            do
             {
-                if (names[i].ToLower() == delete_name)
+                //to store name to delete ......
+                string delete_name;
+                int delete_index = 0;
+                // to now if there are no recored match the delete_name and display not found ...
+                int flag = 0;
+                Console.WriteLine("Enter student name you want to delete:");
+                delete_name = Console.ReadLine().ToLower();
+                // loop to now if delete_name is exit in the recored or not ....
+                for (int i = 0; i < StudentCounter; i++)
                 {
-                    delete_index = Array.IndexOf(names, names[i]);
-                    flag = 1;
+                    if (names[i].ToLower() == delete_name)
+                    {
+                        delete_index = Array.IndexOf(names, names[i]);
+                        flag = 1;
+                    }
                 }
-            }
-            if (flag == 0)
-            {
-                Console.WriteLine("Not found");
-            }
-            else
-            {
-                Console.WriteLine($"Student {names[delete_index]} is deleted successfully \n");
-                StudentCounter--;
-                // loop to remove delete_name from the recored and shift all elements to the left after delete_name ... 
-                for (int i = delete_index; i < StudentCounter; i++)
+                if (flag == 0)
                 {
-                    names[i] = names[i + 1];
-                    Ages[i] = Ages[i + 1];
-                    marks[i] = marks[i + 1];
-                    dates[i] = dates[i + 1];
+                    Console.WriteLine("Not found");
                 }
-                Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-                for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
+                else
                 {
-                    Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+                    Console.WriteLine($"Student {names[delete_index]} is deleted successfully \n");
+                    StudentCounter--;
+                    // loop to remove delete_name from the recored and shift all elements to the left after delete_name ... 
+                    for (int i = delete_index; i < StudentCounter; i++)
+                    {
+                        names[i] = names[i + 1];
+                        Ages[i] = Ages[i + 1];
+                        marks[i] = marks[i + 1];
+                        dates[i] = dates[i + 1];
+                    }
+                    Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
+                    for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
+                    {
+                        Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
+                    }
                 }
-            }
+
+                Console.WriteLine("Do you want to delete anther student? y / n");
+                choice = Console.ReadKey().KeyChar;
+
+            } while (choice == 'y' || choice == 'Y');
+
 
         }
     }
