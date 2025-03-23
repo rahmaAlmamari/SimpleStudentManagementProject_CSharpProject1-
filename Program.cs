@@ -118,9 +118,9 @@ namespace Project1
                     //to add student age into array ages ....
                     Console.WriteLine("Student Age:");
                     Ages[StudentCounter] = int.Parse(Console.ReadLine());
-                    while(Ages[StudentCounter] > 21)
+                    while(Ages[StudentCounter] < 21)
                     {
-                        Console.WriteLine("Sory you can not add student age above 21 years old !\n " +
+                        Console.WriteLine("Sory you can not add student age under 21 years old !\n " +
                                           "Please enter anther age:");
                         Ages[StudentCounter] = int.Parse(Console.ReadLine());
 
