@@ -5,7 +5,7 @@ namespace Project1
     internal class Program
     {
         /*
-         *  add the program need ....
+         *  add the program needs ....
          *
          *Simple Student Management Project ( C# project 1 ) 
          *
@@ -68,8 +68,10 @@ namespace Project1
         // main method .............
         static void Main(string[] args)
         {
-            while (true) // we use while loop to repeat the process and we set true so it will not stop ... 
+            // we use while loop to repeat the process and we set true so it will not stop ... 
+            while (true) 
             {
+                //just to clear the screen ...
                 Console.Clear();
                 Console.WriteLine("System Menu \n");
                 Console.WriteLine("Select option: ");
@@ -84,6 +86,7 @@ namespace Project1
 
                 Console.Write("\nEnter your option: \n");
                 int choice = int.Parse(Console.ReadLine());
+                //switch condation to choose between the functions ...
                 switch (choice)
                 {
                     case 1: AddingNewStudent(); break;
@@ -96,7 +99,9 @@ namespace Project1
                     case 0: Console.WriteLine("Have a nice day ..."); return;
                     default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
                 }
-                Console.ReadLine();// we add this line just to stop the program from clear 'Console.Clear();' the screen before the user see the result ...
+                // we add this line just to stop the program from clear 'Console.Clear();'
+                // the screen before the user see the result ...
+                Console.ReadLine();
 
             }
         }
@@ -106,8 +111,12 @@ namespace Project1
         static void AddingNewStudent()
         {
             char choice;
+            // do loop to repeat the process of adding new student 
+            //based on the user choice ...
             do
             {
+                //to make such that the user do not enter record more than
+                // the arrays size ...
                 if(StudentCounter < names.Length)
                 {
                     Console.Clear();
@@ -120,9 +129,10 @@ namespace Project1
                     //to add student age into array ages ....
                     Console.WriteLine("Student Age:");
                     Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                    //to check if the age is vailde or not (age must be above 21) ...
                     while(Ages[StudentCounter] < 21)
                     {
-                        Console.WriteLine("Sory you can not add student age under 21 years old !\n " +
+                        Console.WriteLine("Sory you can not add student age above 21 years old !\n " +
                                           "Please enter anther age:");
                         Ages[StudentCounter] = int.Parse(Console.ReadLine());
 
@@ -130,6 +140,7 @@ namespace Project1
                     //to add student mark into array marks ....
                     Console.WriteLine("Student Mark:");
                     marks[StudentCounter] = double.Parse(Console.ReadLine());
+                    //to check if the mark is vailde or not (mark must be between 0-100) ...
                     while(marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
                     {
                         Console.WriteLine("Sory student mark should be (0-100) !\n " +
@@ -140,7 +151,7 @@ namespace Project1
                     //to add date of taday into array dates ....
                     dates[StudentCounter] = DateTime.Now;
 
-                    // so the system now that there are one more student added ......
+                    // so the system know that there are one more student added ......
                     StudentCounter++;
                     Console.WriteLine("Do you want to add anther student? y / n");
                     choice = Console.ReadKey().KeyChar;
@@ -171,7 +182,9 @@ namespace Project1
             //        break;//to stop the printing process when the record is finish even if the array size not finish yet ....   
             //    }
             //}
-            for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
+
+            //to print all the recored based on StudentCounter ...
+            for (int i = 0; i < StudentCounter; i++) 
             {
                 Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
             }
@@ -181,15 +194,19 @@ namespace Project1
         static void SearchingForStudentByName()
         {
             char choice;
+            // do loop to repeat the process of searching for student by name 
+            //based on the user choice ...
             do
             {
-                string search_name;//to store name to search for ......
+                //to store name to search for ...
+                string search_name;
                 //string array_name;
-                int flag = 0;// to now if there are no recored match the search_name and display not found
+                // to now if there are no recored match the search_name and display not found ...
+                int flag = 0;
                 Console.WriteLine("Enter student name:");
                 search_name = Console.ReadLine().ToLower();
-
-                for (int i = 0; i < StudentCounter; i++)// we use StudentCounter to loop based on the number of student exit ....
+                // we use StudentCounter to loop based on the number of student exit ....
+                for (int i = 0; i < StudentCounter; i++)
                 {
                     // array_name = names[i].ToLower();
                     if (names[i].ToLower() == search_name)
@@ -213,8 +230,10 @@ namespace Project1
         //4. Calculating the Class Average ....
         static void CalculatingClassAverage()
         {
+            // to hold the sum of all student marks ... 
             double sum = 0;
             double Average;
+            // we use StudentCounter to loop based on the number of student exit ....
             for (int i=0; i< StudentCounter; i++)
             {
                 sum = sum + marks[i];
@@ -230,41 +249,54 @@ namespace Project1
             int index = 0;
             for(int i=0; i<StudentCounter; i++)
             {
+                //to find the largest mark in marks array ...
                 if (marks[i] > lar_mark)
                 {
                     lar_mark = marks[i];
-                    index = Array.IndexOf(marks, marks[i]);
+                    //index = Array.IndexOf(marks, marks[i]);
+                    //to store the index of the largest mark ...
+                    index = i;
                 }
             }
-            Console.WriteLine($"The top pPerforming Student is: {names[index]} with mark: {lar_mark}");
+            //print top performing student detail based on index ... 
+            Console.WriteLine($"The top performing student is: {names[index]} with mark: {lar_mark}");
         }
         //6. Sorting Students by Marks (Descending Order) ...
         static void SortingStudentsByMarksDescending()
         {
-            //to set all student as not printed ........
+            //to set all student as not printed ...
             for(int i=0; i< StudentCounter; i++)
             {
                 isPrinted[i] = false;
             }
-            for(int i=0; i< StudentCounter; i++)//to loop in all student .....
+            //to loop in all student ...
+            for (int i=0; i< StudentCounter; i++)
             {
                 double lar_mark = 0;
                 int index = 0;
+                //to loop each mark in all marks ...
                 for (int j=0; j< StudentCounter; j++)
                 {
+                    //to check if the mark we hold (marks[j]) is largest
+                    //mark or not and if it printed or not ...
                     if (marks[j] > lar_mark && isPrinted[j] == false)
                     {
                         lar_mark = marks[j];
-                        index = Array.IndexOf(marks, marks[j]);
+                        //index = Array.IndexOf(marks, marks[j]);
+                        //to store the index of the largest mark ...
+                        index = j;
                     }
                 }
+                //to store index of largest mark which is not printed yet in sorted_array ...
                 sorted_index[i] = index;
+                //to set the largest mark as printed in isPrinted array so we do not print it again ...
                 isPrinted[index] = true;
 
             }
             Console.WriteLine("Student Information (Descending Order): " +
                   "\n\nName | Age | Mark | Enrollment date");
-            for(int i=0; i<StudentCounter; i++)
+            //to print all student recored after we sorted them (Descending Order) ...
+            for (int i=0; i<StudentCounter; i++)
             {
                 Console.WriteLine($"{names[sorted_index[i]]} | {Ages[sorted_index[i]]} |" +
                                   $" {marks[sorted_index[i]]} | {dates[sorted_index[i]]}");
@@ -274,16 +306,18 @@ namespace Project1
         static void DeletingStudent()
         {
             char choice;
+            // do loop to repeat the process of deleting student 
+            //based on the user choice ...
             do
             {
                 //to store name to delete ......
                 string delete_name;
                 int delete_index = 0;
-                // to now if there are no recored match the delete_name and display not found ...
+                // to know if there are no recored match the delete_name and display not found ...
                 int flag = 0;
                 Console.WriteLine("Enter student name you want to delete:");
                 delete_name = Console.ReadLine().ToLower();
-                // loop to now if delete_name is exit in the recored or not ....
+                // loop to know if delete_name is exit in the recored or not ....
                 for (int i = 0; i < StudentCounter; i++)
                 {
                     if (names[i].ToLower() == delete_name)
@@ -298,6 +332,7 @@ namespace Project1
                 }
                 else
                 {
+                    //delete logic ...
                     Console.WriteLine($"Student {names[delete_index]} is deleted successfully \n");
                     StudentCounter--;
                     // loop to remove delete_name from the recored and shift all elements to the left after delete_name ... 
@@ -309,7 +344,8 @@ namespace Project1
                         dates[i] = dates[i + 1];
                     }
                     Console.WriteLine("Student Information: \nName | Age | Mark | Enrollment date\n");
-                    for (int i = 0; i < StudentCounter; i++)//to view the remain student .... 
+                    //to view the remain student ....
+                    for (int i = 0; i < StudentCounter; i++) 
                     {
                         Console.WriteLine($"{names[i]} | {Ages[i]} | {marks[i]} | {dates[i]}");
                     }
