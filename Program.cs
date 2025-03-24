@@ -56,12 +56,12 @@ namespace Project1
          *
          */
         // declare the array and variable needed ....
-        static double[] marks = new double[3];
-        static int[] Ages = new int[3];
-        static string[] names = new string[3];
-        static DateTime[] dates = new DateTime[3];
-        static bool[] isPrinted = new bool[3];
-        static int[] sorted_index = new int[3];
+        static double[] marks = new double[4];
+        static int[] Ages = new int[4];
+        static string[] names = new string[4];
+        static DateTime[] dates = new DateTime[4];
+        static bool[] isPrinted = new bool[4];
+        static int[] sorted_index = new int[4];
         static int StudentCounter = 0;
 
 
@@ -84,24 +84,47 @@ namespace Project1
                 Console.WriteLine("7. Deleting a Student");
                 Console.WriteLine("0. Exit");
 
-                Console.Write("\nEnter your option: \n");
-                int choice = int.Parse(Console.ReadLine());
-                //switch condation to choose between the functions ...
-                switch (choice)
+                int choice = 0;
+                // to check if the user int right input or not ... 
+                bool flag = false;
+                // use try and catch to make sure the the user will input the right input ...
+                try
                 {
-                    case 1: AddingNewStudent(); break;
-                    case 2: ViewingAllStudents(); break;
-                    case 3: SearchingForStudentByName(); break;
-                    case 4: CalculatingClassAverage(); break;
-                    case 5: FindTopPerformingStudent(); break;
-                    case 6: SortingStudentsByMarksDescending(); break;
-                    case 7: DeletingStudent(); break;
-                    case 0: Console.WriteLine("Have a nice day ..."); return;
-                    default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
+                    Console.Write("\nEnter your option: \n");
+                    choice = int.Parse(Console.ReadLine());
                 }
-                // we add this line just to stop the program from clear 'Console.Clear();'
-                // the screen before the user see the result ...
-                Console.ReadLine();
+                catch (Exception e)
+                {
+                    Console.WriteLine("choosing option process is stoped due to: " + e.Message);
+                    Console.ReadLine();//just to hold second ...
+                    flag = true;
+                }
+
+
+                if (flag)//it mean if flag is true do the following.. if not do else ...
+                {
+                    Console.WriteLine("Try to enter one option in the menu plases ... ");
+                    Console.ReadLine();//just to hold second ...
+                }
+                else
+                {
+                    //switch condation to choose between the functions ...
+                    switch (choice)
+                    {
+                        case 1: AddingNewStudent(); break;
+                        case 2: ViewingAllStudents(); break;
+                        case 3: SearchingForStudentByName(); break;
+                        case 4: CalculatingClassAverage(); break;
+                        case 5: FindTopPerformingStudent(); break;
+                        case 6: SortingStudentsByMarksDescending(); break;
+                        case 7: DeletingStudent(); break;
+                        case 0: Console.WriteLine("Have a nice day ..."); return;
+                        default: Console.WriteLine("\n You enter unaccepted option! ... try again"); break;
+                    }
+                    // we add this line just to stop the program from clear 'Console.Clear();'
+                    // the screen before the user see the result ...
+                    Console.ReadLine();
+                }
 
             }
         }
@@ -155,6 +178,7 @@ namespace Project1
                     StudentCounter++;
                     Console.WriteLine("Do you want to add anther student? y / n");
                     choice = Console.ReadKey().KeyChar;
+                    Console.ReadLine();//just to hold second ...
                 }
                 else
                 {
@@ -223,6 +247,7 @@ namespace Project1
 
                 Console.WriteLine("Do you want to search for anther student? y / n");
                 choice = Console.ReadKey().KeyChar;
+                Console.ReadLine();//just to hold second ...
 
             } while (choice == 'y' || choice == 'Y');
 
@@ -353,6 +378,7 @@ namespace Project1
 
                 Console.WriteLine("Do you want to delete anther student? y / n");
                 choice = Console.ReadKey().KeyChar;
+                Console.ReadLine();//just to hold second ...
 
             } while (choice == 'y' || choice == 'Y');
 
