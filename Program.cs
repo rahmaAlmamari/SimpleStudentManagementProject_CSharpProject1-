@@ -145,37 +145,70 @@ namespace Project1
                     Console.Clear();
                     Console.WriteLine("Enter the following student details:");
 
-                    //to add student name into array names ....
+                    //to add student name into student name array ....
                     Console.WriteLine("Student Name:");
                     names[StudentCounter] = Console.ReadLine();
-
-                    //to add student age into array ages ....
-                    Console.WriteLine("Student Age:");
-                    Ages[StudentCounter] = int.Parse(Console.ReadLine());
-                    //to check if the age is vailde or not (age must be above 21) ...
-                    while(Ages[StudentCounter] < 21)
+                    //to know if the age add or not ...
+                    bool flag_age = true;
+                    do
                     {
-                        Console.WriteLine("Sory you can not add student age above 21 years old !\n " +
-                                          "Please enter anther age:");
-                        Ages[StudentCounter] = int.Parse(Console.ReadLine());
-
-                    }
-                    //to add student mark into array marks ....
-                    Console.WriteLine("Student Mark:");
-                    marks[StudentCounter] = double.Parse(Console.ReadLine());
-                    //to check if the mark is vailde or not (mark must be between 0-100) ...
-                    while(marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
+                        try
+                        {
+                            //to add student age into student age array ....
+                            Console.WriteLine("Student Age (msut be above 21 years old):");
+                            Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                            //to check if the age is vailde or not (age must be above 21) ...
+                            if (Ages[StudentCounter] < 21)
+                            {
+                                Console.WriteLine("Student Age (msut be above 21 years old):");
+                                Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                            }
+                            else
+                            {
+                                flag_age = false;
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine("Student age not add due to: " + e.Message);
+                        }
+    
+                    } while (flag_age);
+                    //to know if the mark add or not ...
+                    bool flag_mark = true;
+                    do
                     {
-                        Console.WriteLine("Sory student mark should be (0-100) !\n " +
-                                          "Please enter anther mark:");
-                        marks[StudentCounter] = double.Parse(Console.ReadLine());
-                    }
+                        try
+                        {
+                            
+                            //to add student mark into student mark array ....
+                            Console.WriteLine("Student Mark (must be btween 0-100):");
+                            marks[StudentCounter] = double.Parse(Console.ReadLine());
+                            //to check if the mark is vailde or not (mark must be between 0-100) ...
+                            if (marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
+                            {
+                                Console.WriteLine("Student Mark (must be btween 0-100):");
+                                marks[StudentCounter] = double.Parse(Console.ReadLine());
+                            }
+                            else
+                            {
+                                flag_mark = false;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Student mark not add due to: " + e.Message);
+                        }
 
-                    //to add date of taday into array dates ....
+                    } while (flag_mark);
+    
+
+                    //to add date of taday into student date array ....
                     dates[StudentCounter] = DateTime.Now;
 
                     // so the system know that there are one more student added ......
                     StudentCounter++;
+                    Console.WriteLine("Student add successfully ...");
                     Console.WriteLine("Do you want to add anther student? y / n");
                     choice = Console.ReadKey().KeyChar;
                     Console.ReadLine();//just to hold second ...
