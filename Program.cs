@@ -410,13 +410,32 @@ namespace Project1
             //based on the user choice ...
             do
             {
-                //to store name to delete ......
-                string delete_name;
-                int delete_index = 0;
                 // to know if there are no recored match the delete_name and display not found ...
                 int flag = 0;
-                Console.WriteLine("Enter student name you want to delete:");
-                delete_name = Console.ReadLine().ToLower();
+                int delete_index = 0;
+                //to store name to delete ......
+                string delete_name;
+                bool flag_name = false;
+                do
+                {
+                    Console.WriteLine("Enter student name you want to delete:");
+                    delete_name = Console.ReadLine().ToLower();
+                    bool check_name = IsAlpha(delete_name);
+                    if (check_name == false)
+                    {
+                        Console.WriteLine("Delete name can not contains number and con not be null ..." +
+                                          "please enter delete name again");
+                        flag_name = true;
+                    }
+                    else
+                    {
+                        flag_name = false;
+                    }
+
+                } while (flag_name);
+
+
+
                 // loop to know if delete_name is exit in the recored or not ....
                 for (int i = 0; i < StudentCounter; i++)
                 {
