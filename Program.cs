@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Project1
 {
@@ -145,9 +146,29 @@ namespace Project1
                     Console.Clear();
                     Console.WriteLine("Enter the following student details:");
 
-                    //to add student name into student name array ....
-                    Console.WriteLine("Student Name:");
-                    names[StudentCounter] = Console.ReadLine();
+                    bool flag_name = false;
+                    do
+                    {
+                        //to add student name into student name array ....
+                        Console.WriteLine("Student Name:");
+                        names[StudentCounter] = Console.ReadLine();
+                        bool check_name = IsAlpha(names[StudentCounter]);
+                        //Console.WriteLine(check_name);
+                        if (check_name == false)
+                        {
+                            Console.WriteLine("Student name can not contains number and con not be null ..." +
+                                              "please enter student name again");
+                            flag_name = true;
+                        }
+                        else
+                        {
+                            flag_name = false;
+                        }
+
+                    } while (flag_name);
+
+
+
                     //to know if the age add or not ...
                     bool flag_age = true;
                     do
@@ -160,8 +181,9 @@ namespace Project1
                             //to check if the age is vailde or not (age must be above 21) ...
                             if (Ages[StudentCounter] < 21)
                             {
-                                Console.WriteLine("Student Age (msut be above 21 years old):");
-                                Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                                //Console.WriteLine("Student Age (msut be above 21 years old):");
+                                //Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Student age not vaild");
                             }
                             else
                             {
@@ -187,8 +209,9 @@ namespace Project1
                             //to check if the mark is vailde or not (mark must be between 0-100) ...
                             if (marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
                             {
-                                Console.WriteLine("Student Mark (must be btween 0-100):");
-                                marks[StudentCounter] = double.Parse(Console.ReadLine());
+                                //Console.WriteLine("Student Mark (must be btween 0-100):");
+                                //marks[StudentCounter] = double.Parse(Console.ReadLine());
+                                Console.WriteLine("Student mark not vaild");
                             }
                             else
                             {
@@ -416,6 +439,14 @@ namespace Project1
             } while (choice == 'y' || choice == 'Y');
 
 
+        }
+
+
+        //ADDITIONAL METHODS ...
+        //1. To check of the string contains something other than letters ....
+        static bool IsAlpha(string input)
+        {
+            return Regex.IsMatch(input, "^[a-zA-Z]+$");
         }
     }
 }
