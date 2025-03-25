@@ -282,13 +282,14 @@ namespace Project1
                 int flag = 0;
                 //to store name to search for ...
                 string search_name;
-
+                //to check if the string input valid or not ...
                 bool flag_name = false;
                 do
                 {
                     //string array_name;
                     Console.WriteLine("Enter student name:");
                     search_name = Console.ReadLine().ToLower();
+                    //calling IsAlpha method to test the string input ...
                     bool check_name = IsAlpha(search_name);
                     if (check_name == false)
                     {
@@ -415,11 +416,13 @@ namespace Project1
                 int delete_index = 0;
                 //to store name to delete ......
                 string delete_name;
+                //to check if the string input valid or not ...
                 bool flag_name = false;
                 do
                 {
                     Console.WriteLine("Enter student name you want to delete:");
                     delete_name = Console.ReadLine().ToLower();
+                    //calling IsAlpha method to test the string input ...
                     bool check_name = IsAlpha(delete_name);
                     if (check_name == false)
                     {
@@ -433,8 +436,6 @@ namespace Project1
                     }
 
                 } while (flag_name);
-
-
 
                 // loop to know if delete_name is exit in the recored or not ....
                 for (int i = 0; i < StudentCounter; i++)
@@ -481,7 +482,7 @@ namespace Project1
 
 
         //ADDITIONAL METHODS ...
-        //1. To check of the string contains something other than letters ....
+        //1. To check of the string contains something other than letters (this methos return true or false)....
         static bool IsAlpha(string input)
         {
             return Regex.IsMatch(input, "^[a-zA-Z]+$");
