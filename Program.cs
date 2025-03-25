@@ -278,13 +278,32 @@ namespace Project1
             //based on the user choice ...
             do
             {
-                //to store name to search for ...
-                string search_name;
-                //string array_name;
                 // to now if there are no recored match the search_name and display not found ...
                 int flag = 0;
-                Console.WriteLine("Enter student name:");
-                search_name = Console.ReadLine().ToLower();
+                //to store name to search for ...
+                string search_name;
+
+                bool flag_name = false;
+                do
+                {
+                    //string array_name;
+                    Console.WriteLine("Enter student name:");
+                    search_name = Console.ReadLine().ToLower();
+                    bool check_name = IsAlpha(search_name);
+                    if (check_name == false)
+                    {
+                        Console.WriteLine("Search name can not contains number and con not be null ..." +
+                                          "please enter search name again");
+                        flag_name = true;
+                    }
+                    else
+                    {
+                        flag_name = false;
+                    }
+
+                } while (flag_name);
+
+
                 // we use StudentCounter to loop based on the number of student exit ....
                 for (int i = 0; i < StudentCounter; i++)
                 {
