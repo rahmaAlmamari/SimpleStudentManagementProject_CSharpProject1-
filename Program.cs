@@ -139,6 +139,12 @@ namespace Project1
             //based on the user choice ...
             do
             {
+                //declare variables to holde student info ...
+                string student_name;
+                int student_age = 0;
+                double student_mark = 0;
+                DateTime student_date;
+
                 //to make such that the user do not enter record more than
                 // the arrays size ...
                 if(StudentCounter < names.Length)
@@ -146,13 +152,14 @@ namespace Project1
                     Console.Clear();
                     Console.WriteLine("Enter the following student details:");
 
-                    bool flag_name = false;
+                    //student name input process code ... 
+                    bool flag_name = false;//to know if the name add or not ...
                     do
                     {
-                        //to add student name into student name array ....
+                        //to store student name into student_name variable ....
                         Console.WriteLine("Student Name:");
-                        names[StudentCounter] = Console.ReadLine();
-                        bool check_name = IsAlpha(names[StudentCounter]);
+                        student_name = Console.ReadLine();
+                        bool check_name = IsAlpha(student_name);
                         //Console.WriteLine(check_name);
                         if (check_name == false)
                         {
@@ -168,18 +175,17 @@ namespace Project1
                     } while (flag_name);
 
 
-
-                    //to know if the age add or not ...
-                    bool flag_age = true;
+                    //student age input process code ... 
+                    bool flag_age = true;//to know if the age add or not ...
                     do
                     {
                         try
                         {
-                            //to add student age into student age array ....
+                            //to store student age into student_age variable ....
                             Console.WriteLine("Student Age (msut be above 21 years old):");
-                            Ages[StudentCounter] = int.Parse(Console.ReadLine());
+                            student_age = int.Parse(Console.ReadLine());
                             //to check if the age is vailde or not (age must be above 21) ...
-                            if (Ages[StudentCounter] < 21)
+                            if (student_age < 21)
                             {
                                 //Console.WriteLine("Student Age (msut be above 21 years old):");
                                 //Ages[StudentCounter] = int.Parse(Console.ReadLine());
@@ -196,18 +202,19 @@ namespace Project1
                         }
     
                     } while (flag_age);
-                    //to know if the mark add or not ...
-                    bool flag_mark = true;
+
+                    //student mark input process code ... 
+                    bool flag_mark = true;//to know if the mark add or not ...
                     do
                     {
                         try
                         {
                             
-                            //to add student mark into student mark array ....
+                            //to store student mark into student_mark variable ....
                             Console.WriteLine("Student Mark (must be btween 0-100):");
-                            marks[StudentCounter] = double.Parse(Console.ReadLine());
+                            student_mark = double.Parse(Console.ReadLine());
                             //to check if the mark is vailde or not (mark must be between 0-100) ...
-                            if (marks[StudentCounter] < 0 || marks[StudentCounter] > 100)
+                            if (student_mark < 0 || student_mark > 100)
                             {
                                 //Console.WriteLine("Student Mark (must be btween 0-100):");
                                 //marks[StudentCounter] = double.Parse(Console.ReadLine());
@@ -224,11 +231,16 @@ namespace Project1
                         }
 
                     } while (flag_mark);
-    
 
-                    //to add date of taday into student date array ....
-                    dates[StudentCounter] = DateTime.Now;
 
+                    //to store date of taday into student_date varible ....
+                    student_date = DateTime.Now;
+
+                    //to store student info in the arrays ...
+                    names[StudentCounter] = student_name;
+                    Ages[StudentCounter] = student_age;
+                    marks[StudentCounter] = student_mark;
+                    dates[StudentCounter] = student_date;
                     // so the system know that there are one more student added ......
                     StudentCounter++;
                     Console.WriteLine("Student add successfully ...");
